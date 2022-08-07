@@ -52,10 +52,11 @@ router.post('/', (req, res) => {
 
 // PUT /api/users/1
 router.put('/:id', (req, res) => {
-    // expects {username: 'Lernatino', email: 'lernatino@gmail.com', password: 'password2334'}
+    // expects {username: 'smeadows', email: 'smeadows@gmail.com', password: 'password2334'}
 
     // if req.body has exact key/value pairs to match the model, using `req.body` works
     User.update(req.body, {
+        individualHooks: true,
         where: {
             id: req.params.id
         }
