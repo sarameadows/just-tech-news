@@ -58,25 +58,25 @@ router.get('/:id', (req, res) => {
 
 // POST /api/users
 router.post('/', (req, res) => {
-    // expects {username: 'Lernatino', email: 'lernatino@gmail.com', password: 'password1234'}
+    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
     User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
     })
-        .then(dbUserData => {
-            req.session.save(() => {
-                req.session.user_id = dbUserData.id;
-                req.session.username = dbUserData.username;
-                req.session.loggedIn = true;
-
-                res.json(dbUserData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
+      .then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+    
+          res.json(dbUserData);
         });
-    });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 router.post('/login', (req, res) => {
